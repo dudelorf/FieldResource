@@ -1,1 +1,4 @@
 nbproject
+js/bower_components
+api/vendor
+api/composer.lock
