@@ -9,6 +9,6 @@
         <div id="container">
             
         </div>
-        <script data-main="js/require-main.js" src="js/bower_components/requirejs/require.js"></script>
+        <script data-main="js/components/require-main.js" src="js/bower_components/requirejs/require.js"></script>
     </body>
 </html>
