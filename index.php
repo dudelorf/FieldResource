@@ -6,8 +6,9 @@
     </head>
     <body>
         <p>What's up!</p>
-        <?php
-        // put your code here
-        ?>
+        <div id="container">
+            
+        </div>
+        <script data-main="js/require-main.js" src="js/bower_components/requirejs/require.js"></script>
     </body>
 </html>

@@ -1,0 +1,13 @@
+{
+    "name": "eric/api",
+    "type": "project",
+    "require": {
+        "slim/slim": "^3.7"
+    },
+    "authors": [
+        {
+            "name": "Eric",
+            "email": "ericrkinzel@gmail.com"
+        }
+    ]
+}
