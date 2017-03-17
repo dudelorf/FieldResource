@@ -1,11 +1,9 @@
 /**
  * Controller for home view
  */
-define(["jquery",
-        "resource_service",
+define(["resource_service",
         "home_views"],
-function($,
-         Resource,
+function(Resource,
          Views){
     
     //Sets up home page view

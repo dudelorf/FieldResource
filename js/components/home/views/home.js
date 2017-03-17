@@ -1,12 +1,10 @@
 /**
  * Main home view page 
  */
-define(["jquery",
-        "backbone",
+define(["backbone",
         "underscore",
         "text!components/home/html/home.html"],
-function($,
-         Backbone,
+function(Backbone,
          _,
          viewHTML){
     

@@ -1,12 +1,10 @@
 /**
  * Main login view page 
  */
-define(["jquery",
-        "backbone",
+define(["backbone",
         "underscore",
         "text!components/login/html/login.html"],
-function($,
-         Backbone,
+function(Backbone,
          _,
          viewHTML){
     

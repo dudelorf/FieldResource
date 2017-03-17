@@ -1,12 +1,10 @@
 /**
  * Controller for login view
  */
-define(["jquery",
-        "resource_service",
+define(["resource_service",
         "router",
         "login_views"],
-function($,
-         Resource,
+function(Resource,
          Router,
          Views){
     

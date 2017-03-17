@@ -4,9 +4,9 @@
 define(["home_main"],
 function(homeMain){
    
-   var factory = {
+   var factories = {
        HomeView: homeMain.factory
    };
    
-   return factory;
+   return factories;
 });

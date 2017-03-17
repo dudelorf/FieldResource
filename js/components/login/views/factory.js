@@ -4,9 +4,9 @@
 define(["login_main"],
 function(loginMain){
    
-   var factory = {
+   var factories = {
        LoginView: loginMain.factory
    };
    
-   return factory;
+   return factories;
 });

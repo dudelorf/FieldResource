@@ -1,8 +1,8 @@
 /**
  * Resource service for backend data communication
  */
-define(["jquery"],
-function($){
+define([],
+function(){
     
     var customGet = function(){
         console.log("getting");
