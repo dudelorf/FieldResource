@@ -20,7 +20,7 @@ function($,
     //Binds view events to controller functions
     var bindEvents = function(view){
         view.on("login:submit", function(){
-            Router.navigate("home", {trigger: true});
+            Router.navigate("home", {trigger: true}); 
         })
     }
     

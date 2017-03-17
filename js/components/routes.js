@@ -1,11 +1,7 @@
 define(["backbone",
-        "user_service", 
-        "login_controller",
-        "home_controller"],
+        "user_service"],
 function(Backbone, 
-         User,
-         Login,
-         Home){
+         User){
     
     var Router = Backbone.Router.extend({
         
@@ -19,15 +15,21 @@ function(Backbone,
         
         login: function(){
             this.navigate("login");
-            Login.init();  
+            require(["login_controller"], function(Login){
+                Login.init();
+            })
         },
         
         home: function(){
             if(User.validateLogin()){
-                Home.init();
+                require(["home_controller"], function(Home){
+                    Home.init(); 
+                });
             }else{
                 User.clearLogin();
-                Login.init();
+                require(["login_controller"], function(Login){
+                    Login.init();
+                });
             }
         },
         
