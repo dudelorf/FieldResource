@@ -1,18 +1,25 @@
+/*global requirejs*/
 require.config({
     baseUrl: "js/",
     paths: {
         backbone: "bower_components/backbone/backbone",
-        "backbone.radio": "bower_components/backbone.radio/build/backbone.radio.js",
         underscore: "bower_components/underscore/underscore",
         text: "bower_components/text/text",
         jquery: "bower_components/jquery/dist/jquery",
-        marionette: "bower_components/backbone.marionette/lib/backbone.marionette",
         
         app: "components/app",
         router: "components/routes",
         
-        login_controller: "components/login/login.controller",
-        login_view: "components/login/login.view"
+        user_service: "components/services/user",
+        resource_service: "components/services/resource",
+        
+        login_controller: "components/login/controller",
+        login_views: "components/login/views/factory",
+        login_main: "components/login/views/login",
+        
+        home_controller: "components/home/controller",
+        home_views: "components/home/views/factory",
+        home_main: "components/home/views/home"
     },
     waitSeconds: 15
 });
