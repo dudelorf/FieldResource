@@ -11,7 +11,6 @@ require.config({
         router: "components/routes",
         
         user_service: "components/services/user",
-        resource_service: "components/services/resource",
         
         login_controller: "components/login/controller",
         login_views: "components/login/views/factory",

@@ -17,8 +17,31 @@ function(Backbone,
         },
         
         submit: function(){
-            console.log("handler clickeded");
-            this.trigger("login:submit");
+            var userName = this.getUserName();
+            var password = this.getPassword();
+            if(!userName || !password){
+                this.showInvalidLogin(true);
+            }else{
+                this.showInvalidLogin(false);
+                this.trigger("login:submit", userName, password);
+            }
+        },
+        
+        getUserName: function(){
+            var obj = $("#login-username");
+            return obj.val();
+        },
+        
+        getPassword: function(){
+            return $("#login-password").val();
+        },
+        
+        showInvalidLogin: function(status){
+            if(status){
+                $(".js-error-msg").removeClass("no-show");  
+            }else{
+                $(".js-error-msg").addClass("no-show");  
+            }
         },
         
         render: function(){

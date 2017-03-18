@@ -1,10 +1,10 @@
 /**
  * Controller for login view
  */
-define(["resource_service",
+define(["user_service",
         "router",
         "login_views"],
-function(Resource,
+function(User,
          Router,
          Views){
     
@@ -17,8 +17,14 @@ function(Resource,
     
     //Binds view events to controller functions
     var bindEvents = function(view){
-        view.on("login:submit", function(){
-            Router.navigate("home", {trigger: true}); 
+        view.on("login:submit", function(userName, password){
+            User.validateLoginCredentials(userName, password)
+            .then(function(){
+                Router.navigate("home", {trigger: true}); 
+            }, function(){
+               view.showInvalidLogin(true); 
+            })
+            
         })
     }
     

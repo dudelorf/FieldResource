@@ -1,10 +1,8 @@
 /**
  * Controller for home view
  */
-define(["resource_service",
-        "home_views"],
-function(Resource,
-         Views){
+define(["home_views"],
+function(Views){
     
     //Sets up home page view
     var init = function(){

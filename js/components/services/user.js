@@ -1,8 +1,8 @@
 /**
  * User service for maintaining current user information
  */
-define(["underscore"],
-function(_){
+define(["jquery"],
+function($){
     
     var currentUser = {
         name: "joe"
@@ -12,6 +12,21 @@ function(_){
         return true;
     }
     
+    /**
+     * Sends login information to server for validation
+     */
+    function validateLoginCredentials(userName, password){
+        console.log(userName);
+        console.log(password);
+        
+        var defer = $.Deferred();
+        defer.reject();
+        return defer.promise();
+        
+//        return $.post("api/login", 
+//            {userName: userName, password: password});
+    }
+    
     function clearLogin(){
         console.log("clearing login info");
     }
@@ -19,6 +34,7 @@ function(_){
     var userObj = {
         currentUser: currentUser,
         validateLogin: validateLogin,
+        validateLoginCredentials: validateLoginCredentials,
         clearLogin: clearLogin
     };
     
