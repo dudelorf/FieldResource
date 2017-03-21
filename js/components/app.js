@@ -21,12 +21,12 @@ function(Backbone, Router, User, $) {
             }, headers: {
                 Authorization: app.getToken()
             }
-        })
+        });
     };
     
     var getToken = function(){
-        return window.localStorage.getItem("token") || ""
-    }
+        return window.localStorage.getItem("token") || "";
+    };
     
     var app = {
         init: initFx,
