@@ -8,7 +8,7 @@ function(Backbone,
          _,
          viewHTML){
     
-    var factory = Backbone.View.extend({
+    var homeView = Backbone.View.extend({
         
         template: _.template(viewHTML),
         
@@ -21,9 +21,6 @@ function(Backbone,
             return this;
         }
     });
-    
-    var viewObj = {
-        factory: factory
-    };
-    return viewObj;
+ 
+    return homeView;
 });

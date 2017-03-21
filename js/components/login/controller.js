@@ -3,14 +3,14 @@
  */
 define(["user_service",
         "router",
-        "login_views"],
+        "login_view"],
 function(User,
          Router,
-         Views){
+         LoginView){
     
     //Sets up login page view
     var init = function(){
-        var view = new Views.LoginView();
+        var view = new LoginView();
         bindEvents(view);
         $("#container").html(view.render().el);
     };

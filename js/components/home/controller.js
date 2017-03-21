@@ -1,12 +1,13 @@
+/*global $*/
 /**
  * Controller for home view
  */
-define(["home_views"],
-function(Views){
+define(["home_view"],
+function(HomeView){
     
     //Sets up home page view
     var init = function(){
-        var view = new Views.HomeView();
+        var view = new HomeView();
         bindEvents(view);
         $("#container").html(view.render().el);
     };
