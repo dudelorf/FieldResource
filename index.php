@@ -11,8 +11,6 @@
         <div id="container" class="container">
             <!-- main application container -->  
         </div>
-        <script src="js/bower_components/jquery/dist/jquery.js"></script>
-        <script src="js/bower_components/bootstrap/dist/js/bootstrap.js"></script>
         <script data-main="js/components/require-main.js" src="js/bower_components/requirejs/require.js"></script>
     </body>
 </html>

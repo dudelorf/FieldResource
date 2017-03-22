@@ -6,6 +6,7 @@ require.config({
         underscore: "bower_components/underscore/underscore",
         text: "bower_components/text/text",
         jquery: "bower_components/jquery/dist/jquery",
+        bootstrap: "bower_components/bootstrap/dist/js/bootstrap",
         
         app: "components/app",
         router: "components/routes",
@@ -13,17 +14,20 @@ require.config({
         user_service: "components/services/user",
         
         login_controller: "components/login/controller",
-        login_views: "components/login/views/factory",
-        login_main: "components/login/views/login",
+        login_view: "components/login/views/login",
         
         home_controller: "components/home/controller",
-        home_views: "components/home/views/factory",
-        home_main: "components/home/views/home"
+        home_view: "components/home/views/home"
+    },
+    shim: {
+        bootstrap: {
+            deps: ["jquery"]
+        }
     },
     waitSeconds: 15
 });
 
-requirejs(["app"],
+requirejs(["app", "bootstrap"],
 function(app){
     app.init();
 });

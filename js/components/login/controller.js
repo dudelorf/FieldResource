@@ -1,16 +1,18 @@
 /**
  * Controller for login view
  */
-define(["user_service",
+define(["jquery",
+        "user_service",
         "router",
-        "login_views"],
-function(User,
+        "login_view"],
+function($,
+         User,
          Router,
-         Views){
+         LoginView){
     
     //Sets up login page view
     var init = function(){
-        var view = new Views.LoginView();
+        var view = new LoginView();
         bindEvents(view);
         $("#container").html(view.render().el);
     };
@@ -22,7 +24,7 @@ function(User,
             .then(function(){
                 Router.navigate("home", {trigger: true}); 
             }, function(){
-               view.showInvalidLogin(true); 
+                view.showInvalidLogin(true); 
             })
             
         })

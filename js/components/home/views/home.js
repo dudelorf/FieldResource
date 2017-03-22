@@ -3,12 +3,14 @@
  */
 define(["backbone",
         "underscore",
+        "jquery",
         "text!components/home/html/home.html"],
 function(Backbone,
          _,
+         $,
          viewHTML){
     
-    var factory = Backbone.View.extend({
+    var homeView = Backbone.View.extend({
         
         template: _.template(viewHTML),
         
@@ -22,8 +24,5 @@ function(Backbone,
         }
     });
     
-    var viewObj = {
-        factory: factory
-    };
-    return viewObj;
+    return homeView;
 });

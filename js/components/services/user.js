@@ -16,15 +16,8 @@ function($){
      * Sends login information to server for validation
      */
     function validateLoginCredentials(userName, password){
-        console.log(userName);
-        console.log(password);
-        
-        var defer = $.Deferred();
-        defer.reject();
-        return defer.promise();
-        
-//        return $.post("api/login", 
-//            {userName: userName, password: password});
+        return $.post("api/login", 
+            {userName: userName, password: password});
     }
     
     function clearLogin(){
