@@ -20,7 +20,7 @@ require.config({
         home_view: "components/home/views/home"
     },
     shim: {
-        bootstrap: {
+        "bootstrap": {
             deps: ["jquery"]
         }
     },

@@ -1,3 +1,4 @@
+/*global $*/
 /**
  * Controller for home view
  */

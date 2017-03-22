@@ -8,10 +8,6 @@ function($){
         name: "joe"
     };
     
-    function validateLogin(){
-        return true;
-    }
-    
     /**
      * Sends login information to server for validation
      */
@@ -20,15 +16,21 @@ function($){
             {userName: userName, password: password});
     }
     
-    function clearLogin(){
+    function getCurrentUser(){
+        $.get("user/current")
+        .then(function(userDetails){
+            currentUser = userDetails; 
+        });
+    };
+    
+    function clearCurrentUser(){
         console.log("clearing login info");
     }
     
     var userObj = {
         currentUser: currentUser,
-        validateLogin: validateLogin,
         validateLoginCredentials: validateLoginCredentials,
-        clearLogin: clearLogin
+        clearCurrentUser: clearCurrentUser
     };
     
     return userObj;
