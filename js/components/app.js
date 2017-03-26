@@ -1,10 +1,29 @@
-define(["backbone", "router", "user_service", "jquery"],
-function(Backbone, Router, User, $) {
-    
+/**
+ * Main application module
+ * 
+ * Responsible for application configuration and intial setup
+ */
+define(["backbone",
+        "jquery",
+        "router",
+        "user_service",],
+function(Backbone,
+         $,
+         Router,
+         User) {
+
+    /**
+     * Kicks off application
+     * 
+     * Do any necessary initialization work here.
+     */
     var initFx = function(){
-        Backbone.history.start();
         app.ajaxSetup();
-        User.getCurrentUser();
+        //Checks if user has an existing login
+        User.getCurrentUser()
+        .then(function(){
+            Backbone.history.start();
+        });
     };
     
     var ajaxSetup = function(){

@@ -7,6 +7,7 @@ CREATE TABLE USERS (
     id INT NOT NULL AUTO_INCREMENT,
     username VARCHAR(45) NOT NULL,
     password VARCHAR(45) NOT NULL,
+    name VARCHAR(45) NOT NULL,
     token CHAR(16) NULL,
     token_expire DATETIME NULL,
     PRIMARY KEY (id),

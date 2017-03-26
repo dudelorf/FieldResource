@@ -13,11 +13,17 @@ $container["config"] = $config;
 $container["db"] = new DatabaseService($config);
 
 //service registration
+require 'services/UserService.php';
+$container["UserService"] = new UserService($app);
 require 'services/AuthService.php';
 $container["AuthService"] = new AuthService($app);
 
 //require all routes
-require_once 'controllers/authController.php';
+require 'controllers/authController.php';
+
+//register middleare
+require 'middleware/TokenAuth.php';
+$app->add(new TokenAuth($app));
 
 //Lets do this!
 $app->run();

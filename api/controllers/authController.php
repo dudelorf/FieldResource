@@ -3,12 +3,13 @@
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
-//define routes for auth
+//Login validation route
+//  ** whitelisted route **
 $app->post("/login", function(Request $request, Response $response) {
     $userData = $request->getParsedBody();
-    $token = $this->AuthService->validateLogin($userData["userName"], $userData["password"]);
+    $token = $this->AuthService->login($userData["username"], $userData["password"]);
     if($token){
-        $response->getBody()->write(json_encode($token));
+        $response = $response->withJson($token, 200);
     }else{
         $response->getBody()->write(json_encode(["error" => "invalid login"]));
         $response = $response->withStatus(401);
@@ -17,7 +18,9 @@ $app->post("/login", function(Request $request, Response $response) {
     return $response;
 });
 
-$app->get("/user/current", function(Request $request, Response $response) {
-    $response->getBody()->write(json_encode(["username" => "joe"]));
-    return $response;
+//Gets the current user details
+//User data is tied to token supplied in request
+$app->get("/user/current", function(Request $request, Response $response){
+    $user = $this["UserService"]->getUser();
+    return $response->withJson($user);
 });

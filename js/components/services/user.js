@@ -9,10 +9,10 @@ function($){
     /**
      * Sends login information to server for validation
      */
-    function validateLoginCredentials(userName, password){
-        return $.post("api/login", {userName: userName, password: password})
+    function validateLoginCredentials(username, password){
+        return $.post("api/login", {username: username, password: password})
         .then(function(userDetails){
-            userObj.currentUser = userDetails;
+            window.localStorage.setItem("token", userDetails.token);
             return true;
         }, function(){
             userObj.currentUser = null;

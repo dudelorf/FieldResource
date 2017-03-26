@@ -19,8 +19,8 @@ function($,
     
     //Binds view events to controller functions
     var bindEvents = function(view){
-        view.on("login:submit", function(userName, password){
-            User.validateLoginCredentials(userName, password)
+        view.on("login:submit", function(username, password){
+            User.validateLoginCredentials(username, password)
             .then(function(status){
                 if(status){
                     Router.navigate("home", {trigger: true});
