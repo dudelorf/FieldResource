@@ -14,10 +14,13 @@ function(Backbone,
         },
         
         login: function(){
-            this.navigate("login");
-            require(["login_controller"], function(Login){
-                Login.init();
-            })
+            if(User.currentUser){
+                this.navigate("home", {trigger: true});
+            }else{
+                require(["login_controller"], function(Login){
+                    Login.init();
+                });
+            }
         },
         
         home: function(){

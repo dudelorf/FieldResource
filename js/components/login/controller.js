@@ -23,7 +23,14 @@ function($,
             User.validateLoginCredentials(username, password)
             .then(function(status){
                 if(status){
-                    Router.navigate("home", {trigger: true});
+                    User.getCurrentUser()
+                    .then(function(status){
+                        if(status){
+                            Router.navigate("home", {trigger: true});
+                        }else{
+                            view.showInvalidLogin(true);
+                        }
+                    });
                 }else{
                     view.showInvalidLogin(true);
                 }

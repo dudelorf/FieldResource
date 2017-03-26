@@ -2,14 +2,19 @@
 /**
  * Controller for home view
  */
-define(["jquery",
+define(["backbone",
+        "jquery",
+        "user_service",
         "home_view"],
-function($,
+function(Backbone,
+         $,
+         User,
          HomeView){
     
     //Sets up home page view
     var init = function(){
-        var view = new HomeView();
+        var model = new Backbone.Model({username: User.currentUser.name});
+        var view = new HomeView({model: model});
         bindEvents(view);
         $("#container").html(view.render().el);
     };

@@ -15,6 +15,7 @@ function($){
             window.localStorage.setItem("token", userDetails.token);
             return true;
         }, function(){
+            window.localStorage.removeItem("token");
             userObj.currentUser = null;
             return false;
         });
@@ -30,7 +31,7 @@ function($){
             userObj.currentUser = null;
             return false;
         });
-    };
+    }
     
     function clearCurrentUser(){
         currentUser = null;

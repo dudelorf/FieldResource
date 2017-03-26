@@ -37,8 +37,8 @@ function(Backbone,
                     User.clearCurrentUser();
                     Router.navigate("login", {trigger: true});
                 }
-            }, headers: {
-                Authorization: app.getToken()
+            }, beforeSend(xhr){
+                xhr.setRequestHeader("Authorization", app.getToken());
             }
         });
     };
