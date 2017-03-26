@@ -25,5 +25,4 @@ class AuthService{
             return $data;
         }
     }
-    
 }

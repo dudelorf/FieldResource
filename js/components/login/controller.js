@@ -21,11 +21,13 @@ function($,
     var bindEvents = function(view){
         view.on("login:submit", function(userName, password){
             User.validateLoginCredentials(userName, password)
-            .then(function(){
-                Router.navigate("home", {trigger: true}); 
-            }, function(){
-                view.showInvalidLogin(true); 
-            })
+            .then(function(status){
+                if(status){
+                    Router.navigate("home", {trigger: true});
+                }else{
+                    view.showInvalidLogin(true);
+                }
+            });
             
         })
     }

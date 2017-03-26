@@ -16,3 +16,8 @@ $app->post("/login", function(Request $request, Response $response) {
     
     return $response;
 });
+
+$app->get("/user/current", function(Request $request, Response $response) {
+    $response->getBody()->write(json_encode(["username" => "joe"]));
+    return $response;
+});

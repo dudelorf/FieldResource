@@ -21,15 +21,13 @@ function(Backbone,
         },
         
         home: function(){
-            if(User.validateLogin()){
+            if(User.currentUser){
                 require(["home_controller"], function(Home){
                     Home.init(); 
                 });
             }else{
-                User.clearLogin();
-                require(["login_controller"], function(Login){
-                    Login.init();
-                });
+                User.clearCurrentUser();
+                this.navigate("login", {trigger: true});
             }
         },
         

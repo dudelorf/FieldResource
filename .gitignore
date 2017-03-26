@@ -1,4 +1,5 @@
 nbproject
+.vscode
 js/bower_components
 api/vendor
 api/composer.lock

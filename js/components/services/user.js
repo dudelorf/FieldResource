@@ -4,32 +4,42 @@
 define(["jquery"],
 function($){
     
-    var currentUser = {
-        name: "joe"
-    };
+    var currentUser = null;
     
     /**
      * Sends login information to server for validation
      */
     function validateLoginCredentials(userName, password){
-        return $.post("api/login", 
-            {userName: userName, password: password});
+        return $.post("api/login", {userName: userName, password: password})
+        .then(function(userDetails){
+            userObj.currentUser = userDetails;
+            return true;
+        }, function(){
+            userObj.currentUser = null;
+            return false;
+        });
+        
     }
     
     function getCurrentUser(){
-        $.get("user/current")
+        return $.get("api/user/current")
         .then(function(userDetails){
-            currentUser = userDetails; 
+            userObj.currentUser = userDetails;
+            return true; 
+        }, function(){
+            userObj.currentUser = null;
+            return false;
         });
     };
     
     function clearCurrentUser(){
-        console.log("clearing login info");
+        currentUser = null;
     }
     
     var userObj = {
         currentUser: currentUser,
         validateLoginCredentials: validateLoginCredentials,
+        getCurrentUser: getCurrentUser,
         clearCurrentUser: clearCurrentUser
     };
     
