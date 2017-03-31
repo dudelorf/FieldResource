@@ -39,6 +39,15 @@ body{
         margin: 0px;
         padding:0px;
     }
+    :-moz-placeholder{
+        color:@primary-color;
+    } 
+    ::-moz-placeholder{
+        color:@primary-color;
+    } 
+    :-ms-input-placeholder{
+        color:@primary-color;
+    }
     ::-webkit-input-placeholder{
         color:@primary-color;
     }
@@ -46,7 +55,16 @@ body{
 
 #login-page{
     button{
+        color:@primary-color;
+        border-radius: 0px;
+        border-color: @accent-color;
+        background-color: @background-color;
         margin-top:10px;
+        font-size: 2em;
+    }
+    button:hover{
+        color:@secondary-color;
+        border-color:@primary-color;
     }
 }
 
