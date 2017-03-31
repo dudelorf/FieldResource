@@ -1,5 +1,5 @@
 /**
- * Main login view page 
+ * Main login view 
  */
 define(["backbone",
         "underscore",
@@ -15,9 +15,11 @@ function(Backbone,
         template: _.template(viewHTML),
         
         events: {
-            "click #login-submit": "submit"
+            "click #login-submit": "submit",
+            "keydown": "enterCheck"
         },
         
+        //submits the login form
         submit: function(){
             var userName = this.getUserName();
             var password = this.getPassword();
@@ -29,15 +31,35 @@ function(Backbone,
             }
         },
         
+        //Prevents default form submission behavior while still alowing
+        //submission on enter
+        enterCheck: function(evt){
+            if(evt.which === 13){ //enter pressed
+                evt.preventDefault();
+                evt.stopPropagation();
+                this.submit();
+                return false;
+            }
+        },
+        
+        //Returns value of username field
         getUserName: function(){
             var obj = $("#login-username");
             return obj.val();
         },
         
+        //Returns value of password field
         getPassword: function(){
             return $("#login-password").val();
         },
         
+        /**
+         * Shows or hides the invalid login message
+         *
+         * If status value is true the message gets shown, othewise it is hidden
+         *
+         * @param {bool} status Show or hide message
+         */
         showInvalidLogin: function(status){
             if(status){
                 $(".js-error-msg").removeClass("no-show");  
@@ -46,6 +68,7 @@ function(Backbone,
             }
         },
         
+        //Renders the view
         render: function(){
             this.$el.html(this.template());
             return this;

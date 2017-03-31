@@ -1,30 +1,63 @@
-@main-color: #555;
-@accent-color: orange;
-@secondary-color: black;
+@background-color: #222;
+@primary-color: #E3E3E3;
+@accent-color: #F95959;
+@secondary-color: #455D7A;
 
+//-------- General classes
 body{
-    background-color: #555;
-    color: whitesmoke;
-}
-
-label{
-    color: @accent-color;
-}
-
-.page-header{
-    text-align: center;
-    padding-top:5px
-}
-
-.login-form-ctr{
-    margin-top: 10px;
-    margin-bottom: 10px;
+    background-color: @background-color;
+    color: @primary-color;
 }
 
 .no-show{
-    visibility: hidden;
+    display: none;
 }
 
 .js-error-msg{
-    color:red;
+    color: crimson;
+}
+
+//-------- login page
+.login-form-ctr{
+    
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-bottom: 5px solid @accent-color;
+    
+    label{
+        font-size: 2em;
+        margin-top:-3px;
+        padding-left: 0px;
+    }
+    input[type="text"], input[type="password"]{
+        font-size: 2em;
+        background-color: @background-color;
+        color: @primary-color;
+        border-color: @background-color;
+        
+        border-radius: 0px;
+        margin: 0px;
+        padding:0px;
+    }
+    ::-webkit-input-placeholder{
+        color:@primary-color;
+    }
+}
+
+#login-page{
+    button{
+        margin-top:10px;
+    }
+}
+
+.login-header{
+    text-align: center;
+    border-bottom: 5px solid @accent-color;
+}
+
+//-------- home page
+.ct1 {
+    p {
+        color: @accent-color;
+    }
 }
