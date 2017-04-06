@@ -4,10 +4,23 @@
 define(["jquery"],
 function($){
     
+    /**
+     * Active user for applicaton
+     * 
+     * Used to determine if a user is logged in and get properties for the 
+     * active user.
+     */
     var currentUser = null;
     
     /**
      * Sends login information to server for validation
+     * 
+     * Sets token and returns true if successful,
+     * Removes token and returns false if not successful
+     * 
+     * @param {string} username User to authenticate
+     * @param {string} password User's password
+     * @return {boolean} success of login
      */
     function validateLoginCredentials(username, password){
         return $.post("api/login", {username: username, password: password})
@@ -19,9 +32,16 @@ function($){
             userObj.currentUser = null;
             return false;
         });
-        
     }
     
+    /**
+     * Fetches user details for current token
+     * 
+     * On success user values are applied to the current user object. On failure
+     * the currentUser object is cleared
+     * 
+     * @return {boolean} Success of operation
+     */
     function getCurrentUser(){
         return $.get("api/user/current")
         .then(function(userDetails){
@@ -31,10 +51,14 @@ function($){
             userObj.currentUser = null;
             return false;
         });
-    }
+    };
     
+    /**
+     * Clears current user from application
+     */
     function clearCurrentUser(){
-        currentUser = null;
+        userObj.currentUser = null;
+        window.localStorage.removeItem("token");
     }
     
     var userObj = {

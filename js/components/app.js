@@ -6,7 +6,7 @@
 define(["backbone",
         "jquery",
         "router",
-        "user_service",],
+        "user_service"],
 function(Backbone,
          $,
          Router,
@@ -26,6 +26,12 @@ function(Backbone,
         });
     };
     
+    /**
+     * Prepares application wide ajax configuration
+     * 
+     * Clears tokenn and auto redirects to login on unauthorized server access
+     * Sends token with every request
+     */
     var ajaxSetup = function(){
         $.ajaxSetup({
             statusCode: {
@@ -37,7 +43,8 @@ function(Backbone,
                     User.clearCurrentUser();
                     Router.navigate("login", {trigger: true});
                 }
-            }, beforeSend(xhr){
+            }, 
+            beforeSend: function(xhr){
                 xhr.setRequestHeader("Authorization", app.getToken());
             }
         });

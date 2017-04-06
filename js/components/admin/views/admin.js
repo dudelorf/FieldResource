@@ -1,32 +1,24 @@
 /**
- * Main home view page 
+ * Admin settings page
  */
 define(["backbone",
         "underscore",
         "jquery",
-        "text!components/home/html/home.html"],
+        "text!components/admin/html/admin.html"],
 function(Backbone,
          _,
          $,
          viewHTML){
-    
-    var homeView = Backbone.View.extend({
+             
+    var adminView = Backbone.View.extend({
         
         template: _.template(viewHTML),
-        
-        events: {
-            "click #logout-button" : "logout"
-        },
         
         render: function(){
             this.$el.html(this.template(this.model.attributes));
             return this;
-        },
-        
-        logout: function(){
-            this.trigger("logout");
         }
     });
     
-    return homeView;
+    return adminView;
 });

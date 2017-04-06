@@ -5,10 +5,12 @@
 define(["backbone",
         "jquery",
         "user_service",
+        "radio_service",
         "home_view"],
 function(Backbone,
          $,
          User,
+         Radio,
          HomeView){
     
     //Sets up home page view
@@ -21,11 +23,21 @@ function(Backbone,
     
     //Binds view events to controller functions
     var bindEvents = function(view){
-        
-    }
+        view.on("logout", controller.logout);
+    };
     
+    /**
+     * Logs the user out and navigates back to login screen
+     */
+    var logout = function(){
+        User.clearCurrentUser();
+        Radio.trigger("logout");
+    };
+    
+    //Module object
     var controller = {
-        init: init
+        init: init,
+        logout: logout
     };
     return controller;
 });

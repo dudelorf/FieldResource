@@ -37,7 +37,8 @@ class UserService {
         $sql = "SELECT username,
                        name
                 FROM $this->field_resource_db.USERS
-                WHERE token = :token";
+                WHERE token = :token
+                AND token_expire >= NOW()";
         $params = [":token" => $token];
 
         $user = $this->db->query($sql, $params);
