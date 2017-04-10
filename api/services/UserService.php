@@ -35,7 +35,8 @@ class UserService {
 
     public function validateToken($token) {
         $sql = "SELECT username,
-                       name
+                       name,
+                       id
                 FROM $this->field_resource_db.USERS
                 WHERE token = :token
                 AND token_expire >= NOW()";
@@ -50,5 +51,28 @@ class UserService {
         }else{
             return false;
         }
+    }
+    
+    public function updateUser($id, $userDetails){
+        $sql = "UPDATE 
+                    $this->field_resource_db.USERS
+                SET 
+                    username = :username,
+                    name = :name
+                WHERE
+                    id = :id";
+        $params = [
+            ":username" => $userDetails["username"],
+            ":name" => $userDetails["name"],
+            ":id" => $id
+        ];
+        
+        $count = $this->db->update($sql, $params);
+        if($count > 0){
+            return array("msg" => "success");
+        }else{
+            return array("msg" => "error");
+        }
+
     }
 }

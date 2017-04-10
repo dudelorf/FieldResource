@@ -1,8 +1,18 @@
 /**
  * User service for maintaining current user information
  */
-define(["jquery"],
-function($){
+define(["jquery",
+        "backbone"],
+function($,
+          Backbone){
+    
+    var UserModel = Backbone.Model.extend({
+        urlRoot: "api/user",
+        defaults: {
+            username: "",
+            name: ""
+        }
+    });
     
     /**
      * Active user for applicaton
@@ -45,7 +55,7 @@ function($){
     function getCurrentUser(){
         return $.get("api/user/current")
         .then(function(userDetails){
-            userObj.currentUser = userDetails;
+            userObj.currentUser = new UserModel(userDetails);
             return true; 
         }, function(){
             userObj.currentUser = null;

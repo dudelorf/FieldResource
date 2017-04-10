@@ -15,8 +15,7 @@ function(Backbone,
     
     //Sets up home page view
     var init = function(){
-        var model = new Backbone.Model({username: User.currentUser.name});
-        var view = new HomeView({model: model});
+        var view = new HomeView({model: User.currentUser});
         bindEvents(view);
         $("#container").html(view.render().el);
     };

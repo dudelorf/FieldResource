@@ -17,10 +17,3 @@ $app->post("/login", function(Request $request, Response $response) {
     
     return $response;
 });
-
-//Gets the current user details
-//User data is tied to token supplied in request
-$app->get("/user/current", function(Request $request, Response $response){
-    $user = $this["UserService"]->getUser();
-    return $response->withJson($user);
-});

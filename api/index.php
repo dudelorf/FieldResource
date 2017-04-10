@@ -20,6 +20,7 @@ $container["AuthService"] = new AuthService($app);
 
 //require all routes
 require 'controllers/authController.php';
+require 'controllers/userController.php';
 
 //register middleare
 require 'middleware/TokenAuth.php';
