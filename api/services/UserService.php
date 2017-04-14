@@ -63,6 +63,13 @@ class UserService {
         }
     }
     
+    /**
+     * Updates the user details when no password supplied
+     * 
+     * @param int $id User ID
+     * @param array $userDetails data to set on user
+     * @return int count of rows changed
+     */
     private function updateUserDetails($id, $userDetails){
         $sql = "UPDATE 
                     $this->field_resource_db.USERS
