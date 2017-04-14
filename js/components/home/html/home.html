@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -20,3 +20,24 @@
     </div>
   </div>
 </nav>
+<div id="home-region">
+    <h1>Welcome <%= name %></h1>
+    <a href="#search">
+        <button id="search-button"
+                class="btn btn-default">
+            Search
+        </button>
+    </a>
+    <a href="#jobs/new">
+        <button id="new-job-button"
+            class="btn btn-default">
+            New Job
+        </button>
+    </a>
+    <a href="#admin">
+        <button id="setting-button"
+                class="btn btn-default">
+            Settings
+        </button>
+    </a>
+</div>
