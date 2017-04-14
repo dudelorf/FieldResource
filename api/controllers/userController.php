@@ -12,6 +12,14 @@ $app->get("/user/current", function(Request $request, Response $response){
 
 $app->put("/user/{id}", function(Request $request, Response $response, $args){
     $userData = $request->getParsedBody();
-    $user = $this["UserService"]->updateUser($args["id"], $userData);
-    return $response->withJson($user);
+    $userId = $args["id"];
+    
+    //security check
+    if(!$userId === $this["UserService"]->getUser()->id){
+        $response->getBody()->write(json_encode(["error" => "invalid userId"]));
+        $response = $response->withStatus(401);
+    }else{
+        $user = $this["UserService"]->updateUser($userId, $userData);
+        return $response->withJson($user);
+    }
 });
