@@ -3,12 +3,12 @@
 class AuthService{
     
     private $db = null;
-    private $UserService = null;
+    private $services = null;
     private $field_resources_db = "";
 
     public function __construct($app) {
         $this->db = $app->getContainer()["db"];
-        $this->UserService = $app->getContainer()["UserService"];
+        $this->services = $app->getContainer();
         $this->field_resource_db = "FIELD_RESOURCE";
     }
     
@@ -16,7 +16,7 @@ class AuthService{
         if($this->validateLogin($username, $password)){
             //generate a new token
             $retArr = ["token" => bin2hex(openssl_random_pseudo_bytes(8))];
-            if($this->UserService->updateToken($username, $retArr["token"])){
+            if($this->services["UserService"]->updateToken($username, $retArr["token"])){
                 return $retArr;
             }else{
                 return null;
@@ -45,5 +45,25 @@ class AuthService{
             //successful login!
             return true;
         }
+    }
+    
+    /**
+     * Generates a password hash and salt for the supplied password
+     * 
+     * Returns an array with the following indices:
+     *  'passwordHash' => hashed password
+     *  'salt' => salt for the given password hash
+     * 
+     * @param string $password pasword to genererate details for
+     * @return array password details
+     */
+    public function getPasswordDetails($password){
+        
+        //TODO - actually generate satlt and hash...
+        
+        return [
+            "passwordHash" => $password,
+            "salt" => "yo, a salt!"
+        ];
     }
 }

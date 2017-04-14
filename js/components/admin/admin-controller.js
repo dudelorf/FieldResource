@@ -21,16 +21,26 @@ function(Backbone,
 
     //Binds view events to controller functions
     var bindEvents = function(view){
-        view.on("user:save", saveUser);
+        view.on("user:save", function(userDetails){
+            controller.saveUser(userDetails, view);
+        });
+        
     };
 
-    var saveUser = function(userDetails){
+    var saveUser = function(userDetails, view){
         User.currentUser.set(userDetails);
-        User.currentUser.save();
+        User.currentUser.save()
+        .then(function(){
+            User.currentUser.unset("password");
+            view.showSaveSuccess(true);
+        }, function(){
+            view.showSaveError(true);
+        });
     };
     
     var controller = {
-        init: init
+        init: init,
+        saveUser: saveUser
     };
     return controller;
              

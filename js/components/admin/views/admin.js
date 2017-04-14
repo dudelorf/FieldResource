@@ -32,13 +32,26 @@ function(Backbone,
                     name: this.getName(),
                     username: this.getUsername()
                 };
-                var newPassword = "";
                 if(this.getPassword()){
-                    newPassword = this.getPassword();
+                    userDetails.password = this.getPassword();
                 }
-                this.trigger("user:save", userDetails, newPassword);
+                this.trigger("user:save", userDetails);
             }
-            return false;
+            return false; //prevent form submission
+        },
+        
+        /**
+         * Submits details on enter keypress
+         * 
+         * @param {event} e Keypress event
+         * @return false/undefined false if enter keypress
+         */
+        enterSubmit: function(evt){
+            if(evt.which === 13){ //enter pressed
+                evt.preventDefault();
+                evt.stopPropagation();
+                this.saveDetails();
+            }
         },
         
         /**
@@ -78,12 +91,40 @@ function(Backbone,
         },
         
         /**
-         * Clears all visible error messages
+         * Clears all visible messages
          */
         clearErrors: function(){
             this.showUsernameError(false);
             this.showNameError(false);
             this.showConfirmPassError(false);
+            this.showSaveSuccess(false);
+            this.showSaveError(false);
+        },
+        
+        /**
+         * Displays message when save was successful
+         * 
+         * @param {type} show shows/hides message if true/false respectively
+         */
+        showSaveSuccess: function(show){
+            if(show){
+                $("#save-success-msg").removeClass("no-show");
+            }else{
+                $("#save-success-msg").addClass("no-show");
+            }
+        },
+        
+        /**
+         * Displays message when save unsuccessful
+         * 
+         * @param {type} show shows/hides message if true/false respectively
+         */
+        showSaveError: function(show){
+            if(show){
+                $("#save-error-msg").removeClass("no-show");
+            }else{
+                $("#save-error-msg").addClass("no-show");
+            }
         },
         
         /**

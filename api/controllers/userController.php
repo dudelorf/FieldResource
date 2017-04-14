@@ -10,6 +10,7 @@ $app->get("/user/current", function(Request $request, Response $response){
     return $response->withJson($user);
 });
 
+//Updates the user specifed
 $app->put("/user/{id}", function(Request $request, Response $response, $args){
     $userData = $request->getParsedBody();
     $userId = $args["id"];
@@ -17,9 +18,13 @@ $app->put("/user/{id}", function(Request $request, Response $response, $args){
     //security check
     if(!$userId === $this["UserService"]->getUser()->id){
         $response->getBody()->write(json_encode(["error" => "invalid userId"]));
-        $response = $response->withStatus(401);
-    }else{
-        $user = $this["UserService"]->updateUser($userId, $userData);
-        return $response->withJson($user);
+        return $response->withStatus(403);
     }
+    
+    return $this["UserService"]->updateUser($userId, $userData) ?
+        $response->withJson(["success" => "user updated"]) :
+        $response->getBody()
+                 ->write(json_encode(["error" => "unable to update user"]))
+                 ->withStatus(503);
+    
 });

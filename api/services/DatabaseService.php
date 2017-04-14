@@ -2,13 +2,10 @@
 
 class DatabaseService {
     
-    private $dbh = "";
-    private $username = "";
-    
     private $connecton = null;
         
     public function __construct($config){
-        $this->connection = new PDO($config->dsn, $config->username, $config->password);
+        $this->connection = new PDO($config->dsn, $config->username, $config->password, array(PDO::MYSQL_ATTR_FOUND_ROWS => true));
     }
 
     /**
